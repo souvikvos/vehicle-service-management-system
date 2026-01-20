@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../include/auth.h"
 
 void welcome_screen()
 {
@@ -19,8 +20,79 @@ int main_menu()
     printf("------------------------------");
     printf("Enter your choice: ");
     scanf("%d", &choice);
+
+    return choice;
 }
 
+
+
+void adminMenu(){
+    int choice;
+
+    while(1){
+        printf("\n==========ADMIN MENU===========\n");
+        printf("1. Vehicle Management\n");
+        printf("2. Service Records\n");
+        printf("3. Logout\n");
+        printf("==================================\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+
+    switch(choice){
+        case 1:
+        printf("\n[Vehicle module coming next]\n");
+        break;
+
+        case 2:
+        printf("\n[Service module coming next]\n");
+        break;
+        case 3:
+        printf("\nLogging out...\n");
+        return; // goes back to main menu
+
+        default:
+        printf("\nInvalid choice. Try again.\n");
+
+    }
+}
+}
+
+void userMenu(){
+    int choice;
+    while(1){
+        printf("\n=============USER MENU==============\n");
+        printf("1. View Service History\n");
+        printf("3.Logout\n");
+        printf("======================================\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+
+        switch(choice){
+            case 1:
+            printf("\n[View service history coming next]\n");
+            break;
+
+            case 2:
+            printf("\n[Search vehicle coming next]\n");
+            break;
+
+
+            case 3:
+            printf("\nLogging out...\n");
+            return;
+
+            default:
+            printf("\nInvalid choice. Try again.\n");
+            
+        }
+
+     }
+
+
+
+}
 int main()
 {
     welcome_screen();
@@ -32,10 +104,21 @@ int main()
         switch (choice)
         {
         case 1:
-            printf("login feature coming soon....\n");
+            int role = loginUser();
+
+            if(role ==  ROLE_ADMIN){
+                adminMenu();
+            }
+            else if(role == ROLE_USER){
+                userMenu();
+            }
+            else{
+                printf("\nLogin failed.Try again. \n");
+            }
+
             break;
         case 2:
-            printf("Register feature coming soon...\n");
+            registerUser();
             break;
         case 3:
             printf("Exiting..Good Bye!\n");
