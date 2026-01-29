@@ -12,5 +12,5 @@ data/*.dat
 *.dat
 
 # Ignore Executables
-*.exe
+
 *.o
